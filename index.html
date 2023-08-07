@@ -1,0 +1,51 @@
+<style>
+    body{
+        margin: 0;
+    }
+    #map{
+        background: deepskyblue;
+    }
+</style>
+<canvas id="map">
+</canvas>
+
+
+
+<script>
+    map=document.getElementById('map');
+    map.height=document.documentElement.clientHeight;
+    map.width=document.documentElement.clientWidth;
+
+    ctx=map.getContext('2d');
+
+
+
+    function drawCircle(x, y, radius) {
+        ctx.beginPath();
+        ctx.arc(x, y, radius, 0, 2 * Math.PI);
+        ctx.fillStyle = 'red';
+        ctx.fill();
+        ctx.closePath();
+    }
+
+
+    function getLocation() {
+        navigator.geolocation.getCurrentPosition(
+          position => {
+
+
+            const x = (position.coords.longitude + 180) * (map.width / 360);
+            const y = map.height - ((position.coords.latitude + 90) * (map.height / 180));
+
+            drawCircle(x, y, position.coords.accuracy/100);
+
+          }
+        );
+    }
+
+    setInterval(function(){
+        getLocation();
+        map.clearRect(0,0,map.width,map.height)
+
+    },120);
+</script>
