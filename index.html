@@ -42,10 +42,8 @@
           }
         );
     }
-
+    ctx.clearRect(0, 0, map.width, map.height);
     setInterval(function(){
         getLocation();
-        map.clearRect(0,0,map.width,map.height)
-
     },120);
 </script>
