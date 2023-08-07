@@ -26,6 +26,8 @@
         ctx.fillStyle = 'red';
         ctx.fill();
         ctx.closePath();
+
+        ctx.
     }
 
 
@@ -38,6 +40,7 @@
             const y = map.height - ((position.coords.latitude + 90) * (map.height / 180));
 
             drawCircle(x, y, position.coords.accuracy/100);
+            ctx.fillText(x+','+y, x, y);
 
           }
         );
